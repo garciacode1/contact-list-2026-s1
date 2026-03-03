@@ -1,0 +1,41 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Topic;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class TopicSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+
+
+    public function run(): void
+    {
+        $seedTopics = [
+            [
+                'id' => 1,
+                'name' => 'general',
+                'description' => 'General contact Messages',
+                'available' => true,
+            ],
+            [
+                'name' => 'website oopsie',
+                'description' => 'Website errors',
+                'available' => false,
+            ],
+            [
+                'name' => 'feedback',
+                'description' => 'Client Feedback (positive and negative)',
+                'available' => true,
+            ],
+        ];
+
+        foreach ($seedTopics as $seedTopic) {
+            Topic::create($seedTopic);
+        }
+    }
+}
