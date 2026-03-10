@@ -23,6 +23,27 @@ class ContactUsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        //TODO: validate data
+        $validated = $request->validate([
+
+            'name' => ['required'],
+            'email' => ['required,email'],
+            'subject' => ['required'],
+            'message' => ['required'],
+            'topic_id' => ['required, integer]'
+        ]);
+        //Store contact message
+        Message:: create(
+          [
+            'name' => $validated->name,
+            'email' => $validated->email,
+            'subject' => $validated->subject,
+            'message' => $validated->message,
+            'topic_id' => $validated->topic_id,
+
+
+          ]
+        );
+        return redirect()->route('static.thank-you');
     }
 }
